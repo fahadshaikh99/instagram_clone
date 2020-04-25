@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, YellowBox} from 'react-native';
+import { View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -31,7 +31,7 @@ login = async () => {
         super(props);
 
         // disable Yellow warning Code
-        console.ignoredYellowBox = ['Setting a timer'];
+        console.disableYellowBox = true
         // end of yellow warning code
 
 
@@ -137,13 +137,13 @@ render() {
 
     return (
             <View style={{ flex: 1 }} >
-                <View style={{ height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
-                    <Text>
-                        feed
+                <View style={{ height: 90, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
+                    <Text style={{ fontSize: 30}}>
+                        Feed
                     </Text>
                     </View>
              {this.state.loading ==  true ? (
-                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><Text>loading.... </Text></View>
+                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
              ) : ( 
 
             <FlatList 
@@ -159,6 +159,10 @@ render() {
                         <Text>{item.posted}</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
                         <Text>{item.author}</Text>
+                        {/* <Image 
+                        source={{ uri: item.id }} 
+                        style={{ resizeMode: 'cover', width: '100%', height: 275 }}
+                        /> */}
                         </TouchableOpacity>
                     </View>
                 
