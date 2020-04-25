@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-
+import FetchImage from '../../components/FetchImage.js';
 
 
 class feed extends React.Component {
@@ -90,6 +89,7 @@ addToFlatList = (photo_feed, data, photo) => {
         const exists = (snapshot.val() !== null);
         if(exists) data = snapshot.val();
         photo_feed.push({
+         //   Photoavatar: that.state.avatar,
             id: photo,
             url: photoObj.url,
             caption: photoObj.caption,
@@ -102,7 +102,6 @@ addToFlatList = (photo_feed, data, photo) => {
             refresh: false,
             loading: false
         });
-
     }).catch(error => console.log(error));
 }
 
@@ -132,6 +131,17 @@ LoadNew = () => {
     
 }
 
+// fetchPhoto = (userId) => {
+//     var that = this;
+    
+//     database.ref('users').child(userId).child('avatar').once('value').then(function(snapshot) {
+//         const exists = (snapshot.val()!== null);
+//         if(exists) data = snapshot.val();
+//             that.setState({ avatar: data });
+//     }).catch(error => console.log(error));
+
+// }
+
 render() {
 
 
@@ -159,11 +169,19 @@ render() {
                         <Text>{item.posted}</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
                         <Text>{item.author}</Text>
-                        {/* <Image 
-                        source={{ uri: item.id }} 
-                        style={{ resizeMode: 'cover', width: '100%', height: 275 }}
-                        /> */}
+                        
                         </TouchableOpacity>
+                        
+                        {/* <View>
+                            <fetchImage />
+                        </View>
+                         */}
+                      
+                        <FetchImage 
+                            objectUrl={item.authorId}
+                        />
+                      
+                        
                     </View>
                 
                     <View>
