@@ -1,5 +1,5 @@
 import React from  'react';
-import { View, Text, Image} from 'react-native';
+import { View, Text, Image, ActivityIndicator} from 'react-native';
 import { database } from '../config/config';
 
 class FetchImage extends React.Component {
@@ -29,12 +29,12 @@ class FetchImage extends React.Component {
         
         return(
             <View>
-                { this.state.loaded == '' ?  (
-                  <View><Text> Loading ....</Text></View>
+                { this.state.avatar == '' ?  (
+                  <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="green" /></View>
                 ) : (
                 <Image
                     source={{ uri: this.state.avatar }}
-                    style={{marginLeft: 10, height: 100, width: 100, borderRadius: 50}}
+                    style={{marginLeft: 10, height: 50, width: 50, borderRadius: 25}}
                 />
                 )}
             </View>

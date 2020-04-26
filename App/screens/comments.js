@@ -176,7 +176,7 @@ postComment = () => {
         this.reloadCommentList();
     }
     else {
-        alert("Plwease Enter a comment")
+        alert("Please Enter a comment")
     }
 
 }
@@ -205,7 +205,7 @@ reloadCommentList = () => {
                     </View>
 
             {this.state.comments_list.length == 0 ? (
-                <View><Text>You dont Have any Comments</Text></View>
+                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><Text> This Post don't have any comments</Text></View>
             ) : (
                 <FlatList
                 data={this.state.comments_list}

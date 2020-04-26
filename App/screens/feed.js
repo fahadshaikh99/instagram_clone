@@ -31,6 +31,7 @@ login = async () => {
 
         // disable Yellow warning Code
         console.disableYellowBox = true
+        console.ignoredYellowBox = ['Setting a timer'];
         // end of yellow warning code
 
 
@@ -51,7 +52,7 @@ pluralCheck = (s) => {
         return ' ago';
     }
     else {
-        return 's ago';
+        return ' ago';
     }
 }
 
@@ -77,7 +78,7 @@ timeConvertor = (timestamp) => {
     } 
     interval = Math.floor(seconds / 60);
     if(interval > 1) {
-        return interval+ ' mints'+this.pluralCheck(interval);
+        return interval+ ' mins'+this.pluralCheck(interval);
     } 
     return Math.floor(seconds) + ' second'+this.pluralCheck(seconds);
 }
@@ -164,23 +165,25 @@ render() {
                 style={{flex: 1, backgroundColor: '#eee'}}
                 renderItem={({item, index}) => (
 
-                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1, borderColor: 'grey'}}>
-                    <View style={{ flexDirection: 'row', padding: 5, width: '100%', justifyContent: 'space-between'}}>
-                        <Text>{item.posted}</Text>
+                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, borderBottomWidth: 1, borderColor: 'grey'}}>
+                    <View style={{ flexDirection: 'row', padding: 5, width: '100%'}}>
+                        
+                        
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
-                        <Text>{item.author}</Text>
-                        
+                            <View style={{ flexDirection: 'row'}}>
+                                <View>
+                                <FetchImage 
+                                    objectUrl={item.authorId}
+                                />
+                                </View>
+                                <View style={{ marginTop: '5%', paddingLeft: '4%'}}>
+                                    <Text>
+                                        {item.author}
+                                    </Text> 
+                                    <Text>{item.posted}</Text> 
+                                </View>
+                            </View>
                         </TouchableOpacity>
-                        
-                        {/* <View>
-                            <fetchImage />
-                        </View>
-                         */}
-                      
-                        <FetchImage 
-                            objectUrl={item.authorId}
-                        />
-                      
                         
                     </View>
                 
@@ -194,7 +197,7 @@ render() {
                     <View style={{ padding: 5}}>
                         <Text>{item.caption}</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
-                        <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
+                            <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
                         </TouchableOpacity>
                     </View>
 

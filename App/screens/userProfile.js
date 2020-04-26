@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import PhotoList from '../../components/photoList';
 
@@ -60,7 +60,7 @@ class userProfile extends React.Component {
               
                 
               { this.state.loaded == false ?  (
-                  <View><Text> Loading ....</Text></View>
+                  <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
               ) : (
                 <View style={{ flex: 1}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, alignItems: 'center'}} >

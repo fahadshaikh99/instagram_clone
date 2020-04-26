@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, Image} from 'react-native';
+import { View, Text,  TouchableOpacity, FlatList, Image, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../config/config';
 
 class photoList extends React.Component {
@@ -112,11 +112,11 @@ class photoList extends React.Component {
     
         }
      
-    LoadNew = () => {
+    // LoadNew = () => {
     
-        this.LoadFeed();
+    //     this.LoadFeed();
         
-    }
+    // }
 
 
 
@@ -126,12 +126,12 @@ class photoList extends React.Component {
         return (
                 <View style={{ flex: 1 }} >
                  {this.state.loading ==  true ? (
-                     <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><Text>loading.... </Text></View>
+                     <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
                  ) : ( 
     
                 <FlatList 
                     refreshing={this.state.refresh}
-                    onRefresh={this.LoadNew}
+                  //  onRefresh={this.LoadNew}
                     data={this.state.photo_feed}
                     keyExtractor={(item, index) => index.toString()}
                     style={{flex: 1, backgroundColor: '#eee'}}
