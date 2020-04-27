@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import PhotoList from '../../components/photoList';
-
+import AuthSection from '../../components/AuthSection';
 class userProfile extends React.Component {
 
     constructor(props) {

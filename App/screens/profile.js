@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import PhotoList from '../../components/photoList';
-
+import AuthSection from '../../components/AuthSection';
 
 
 class profile extends React.Component {
@@ -147,7 +147,7 @@ class profile extends React.Component {
 
                 // if user is not logged In
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text>Please LogIn first </Text>
+                    <AuthSection />
                 </View>
             )}
             </View>

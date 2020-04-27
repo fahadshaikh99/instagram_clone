@@ -6,6 +6,8 @@ import upload from './App/screens/upload';
 import profile from './App/screens/profile';
 import userProfile from './App/screens/userProfile';
 import comments from './App/screens/comments';
+import loginScreen from './App/screens/loginScreen';
+import SignUpScreen from './App/screens/SignUpScreen';
 
 const TabStack = createBottomTabNavigator(
   {
@@ -19,7 +21,9 @@ const MainStack = createStackNavigator(
   {
       Home: { screen: TabStack},
       User: { screen: userProfile},
-      Comments: { screen: comments}
+      Comments: { screen: comments},
+      login: { screen: loginScreen},
+      SignUp: { screen: SignUpScreen}
   },
   {
   initialRouteName: 'Home',

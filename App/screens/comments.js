@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import CommentBox from '../../components/CommentBox';
+import AuthSection from '../../components/AuthSection';
 
 class comments extends React.Component {
     
@@ -258,7 +259,7 @@ reloadCommentList = () => {
             ): (
                 // if not loggged In
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Please LogIn first </Text>
+                <AuthSection />
             </View>
             )}
 

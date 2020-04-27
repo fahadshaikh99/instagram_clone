@@ -3,6 +3,7 @@ import { View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import FetchImage from '../../components/FetchImage.js';
+import { withNavigation } from 'react-navigation';
 
 
 class feed extends React.Component {
@@ -11,19 +12,21 @@ class feed extends React.Component {
 
 
 
-login = async () => {
-    try {
-        var user = await auth.signInWithEmailAndPassword('test@test.com', 'password');
-    }catch(error) {
-        console.log(error);
-    }
-    if(user) {
-        console.log("You are logged In");
-    }
-    else{
-       console.log("You are not logged In");
-    }
-}
+login = async (props) => {
+    const { navigate } = this.props.navigation;
+    f.auth().onAuthStateChanged(function(user) {
+        if(!user) {
+           console.log("You are not loged In");
+            navigate('login');
+           
+        }
+        else if(user) {
+            console.log("You are loged In");
+        }
+    });
+    
+
+ }
  
 
     constructor(props) {
@@ -132,16 +135,7 @@ LoadNew = () => {
     
 }
 
-// fetchPhoto = (userId) => {
-//     var that = this;
-    
-//     database.ref('users').child(userId).child('avatar').once('value').then(function(snapshot) {
-//         const exists = (snapshot.val()!== null);
-//         if(exists) data = snapshot.val();
-//             that.setState({ avatar: data });
-//     }).catch(error => console.log(error));
 
-// }
 
 render() {
 
@@ -212,4 +206,4 @@ render() {
         );
     }
 }
-export default feed;
+export default withNavigation(feed);
