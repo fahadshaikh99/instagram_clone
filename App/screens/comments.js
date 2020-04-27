@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
-
+import CommentBox from '../../components/CommentBox';
 
 class comments extends React.Component {
     
@@ -214,6 +214,9 @@ reloadCommentList = () => {
                 style={{ flex: 1, backgroundColor: '#eee'}}
                 renderItem={({item, index}) => (
                     <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'grey'}}>
+                        
+                        
+                        
                         <View style={{ padding: 5, width: '100%', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text>
                                 {item.posted}
@@ -231,8 +234,9 @@ reloadCommentList = () => {
             )}      
             {this.state.loggedin == true ? (
                   // if logged In
+                  // behavior="padding" enabled 
                  // <View style={{ height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
-                  <KeyboardAvoidingView  behavior="padding" enabled style={{borderTopWidth:1, borderTopColor: 'grey', padding: 10, marginBottom: 15 }}>
+                  <KeyboardAvoidingView  style={{borderTopWidth:1, borderTopColor: 'grey', padding: 10, marginBottom: 15 }}>
                       <Text style={{fontWeight: 'bold'}}> Post Comments</Text>
                       <TextInput
                       editable={true}
