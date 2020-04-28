@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
-// import Icon from 'react-native-vector-icons/Feather';
 import { database, auth } from '../../config/config';
 import { withNavigation } from 'react-navigation';
 
@@ -42,8 +41,8 @@ login = async () => {
 
     render(){
 
-    return(
-        <View style={{ marginTop: '40%'}}>
+        return(
+            <View style={{ marginTop: '40%'}}>
 
                 <View style={{ alignItems: 'center'}}>
                     <Text style={styles.text}>
@@ -53,22 +52,20 @@ login = async () => {
 
                 <View style={{ alignItems: 'center'}}>
           
-                <View style={styles.backgroundStyle}>
+                    <View style={styles.backgroundStyle}>
                     {/* <Icon style={styles.iconStyle}
                     name="phone"
                     /> */}
-                    <TextInput 
-                        style={styles.InputTextStyle}
-                        placeholder="Email"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        keyboardType={"email-address"}
-                        editable={true}
-                        value={this.state.email}
-                        onChangeText={(text) => this.setState({ email: text})}
-                    //    value={term}
-                     //   onChangeText={onTermChange}
-                      //  onEndEditing={onTermSubmited}
+                        <TextInput 
+                            style={styles.InputTextStyle}
+                            placeholder="Email"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            keyboardType={"email-address"}
+                            editable={true}
+                            value={this.state.email}
+                            onChangeText={(text) => this.setState({ email: text})}
+                       
                     >
                 
                     </TextInput>
@@ -103,15 +100,15 @@ login = async () => {
                     {/* marginTop in percentage */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, justifyContent:'space-evenly'}}>
                     <View>
-                       <TouchableOpacity
+                        <TouchableOpacity
                         onPress={() => this.login()}
-                       >
+                        >
                             <View style={styles.button}>
                                 <Text style={styles.buttonText}>
                                     Login
                                 </Text>
                             </View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
                     </View>
 
                     <View>
@@ -127,9 +124,9 @@ login = async () => {
                 </View>
                 {/* marginTop in percentage */}
                 <View style={{  alignItems: 'center', justifyContent: 'center', marginTop: 12}}>
-                        <Text style={{ color: 'white'}}>
-                            Or connect with
-                        </Text>
+                    <Text style={{ color: 'white'}}>
+                        Or connect with
+                    </Text>
                 </View>
                 {/* marginTop in percentage */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, justifyContent:'space-evenly'}}>
@@ -155,11 +152,11 @@ login = async () => {
                    
                 </View>
 
-        </View>
+            </View>
     );
 }
 }
-// margins in percentage
+
 const styles = StyleSheet.create({
     backgroundStyle: {
         backgroundColor: '#F0EEEE',

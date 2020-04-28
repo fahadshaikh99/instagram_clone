@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
 import { f, auth, storage, database } from '../../config/config.js';
-import AuthSection from '../Components/AuthSection';
+
 
 class comments extends React.Component {
     
@@ -258,7 +258,7 @@ reloadCommentList = () => {
             ): (
                 // if not loggged In
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <AuthSection />
+                
             </View>
             )}
 

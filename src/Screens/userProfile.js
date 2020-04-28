@@ -14,8 +14,8 @@ class userProfile extends React.Component {
             }
             
         }
-    
-    checkParams = () => {
+    // this function will get the parameters form navigation and passed as a argument to fetchUserInfo
+checkParams = () => {
 
         var params = this.props.navigation.state.params;
         if(params) {
@@ -26,9 +26,12 @@ class userProfile extends React.Component {
             this.fetchUserInfo(params.userId);
             }
         }
-    }
+}
 
-    fetchUserInfo = (userId) => {
+
+// This Function will fetch User info from firebase like: Name, username, avatar and etc
+// we called this function inside componentDidMount function
+fetchUserInfo = (userId) => {
         var that = this;
         database.ref('users').child(userId).child('username').once('value').then(function(snapshot) {
             const exists = (snapshot.val()!== null);
@@ -49,11 +52,13 @@ class userProfile extends React.Component {
         }).catch(error => console.log(error));
     }
 
-    componentDidMount = () => {
+
+// this we call checkParams function
+componentDidMount = () => {
         
         this.checkParams();
  
-    }
+}
 
 
     render() {
@@ -62,13 +67,13 @@ class userProfile extends React.Component {
               
                 
               { this.state.loaded == false ?  (
-                  <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
+                <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
               ) : (
                 <View style={{ flex: 1}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, alignItems: 'center'}} >
                         <TouchableOpacity 
-                        style={{ width: 100}}
-                        onPress={() => this.props.navigation.goBack()}>
+                            style={{ width: 100}}
+                            onPress={() => this.props.navigation.goBack()}>
                             <Text style={{ fontWeight: 'bold', fontSize: 14, paddingLeft: 5}}>
                                 go back
                             </Text>

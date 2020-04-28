@@ -2,6 +2,9 @@ import React from  'react';
 import { View, Text, Image, ActivityIndicator} from 'react-native';
 import { database } from '../../config/config';
 
+
+// This Component will fetch users Avatar when you pass userId as a argument to this function
+
 class FetchImage extends React.Component {
 
     constructor(props) {
@@ -12,7 +15,8 @@ class FetchImage extends React.Component {
          this.fetchUserInfo(this.props.objectUrl);   
     }
     
-    fetchUserInfo = (userId) => {
+// it will fetch user Avatar according to user UserId
+fetchUserInfo = (userId) => {
         var that = this;
         
         database.ref('users').child(userId).child('avatar').once('value').then(function(snapshot) {
@@ -21,7 +25,7 @@ class FetchImage extends React.Component {
                 that.setState({ avatar: data});
                // console.log(that.state.avatar)
         }).catch(error => console.log(error));
-    }
+}
 
 
 

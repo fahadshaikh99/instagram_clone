@@ -8,27 +8,6 @@ import { withNavigation } from 'react-navigation';
 
 class feed extends React.Component {
 
-
-
-
-
-login = async (props) => {
-    const { navigate } = this.props.navigation;
-    f.auth().onAuthStateChanged(function(user) {
-        if(!user) {
-           console.log("You are not loged In");
-            navigate('login');
-           
-        }
-        else if(user) {
-            console.log("You are loged In");
-        }
-    });
-    
-
- }
- 
-
     constructor(props) {
         super(props);
 
@@ -46,19 +25,46 @@ login = async (props) => {
         }
     }
 
+
+// this function will check if user is logged in or not, if not it will navigate to login Component
+// we Called this function inside constructor 
+login = async (props) => {
+    const { navigate } = this.props.navigation;
+    f.auth().onAuthStateChanged(function(user) {
+        if(!user) {
+           console.log("You are not loged In");
+            navigate('login');
+           
+        }
+        else if(user) {
+            console.log("You are loged In");
+        }
+    });
+    
+
+ }
+ 
+
+// this function will load or feed
+
 componentDidMount = () => {
         this.LoadFeed();
 }
+
+// this function will check plural check for or timeStamp function 
 
 pluralCheck = (s) => {
     if(s == 1) {
         return ' ago';
     }
     else {
-        return ' ago';
+        return 's ago';
     }
 }
 
+
+// this function will convert timeStamp into seconds months and Years
+// we called this function inside AddToFlatList function
 
 timeConvertor = (timestamp) => {
     var a = new Date(timestamp * 1000);
@@ -86,6 +92,10 @@ timeConvertor = (timestamp) => {
     return Math.floor(seconds) + ' second'+this.pluralCheck(seconds);
 }
 
+
+// this function will push our data(Firebase data) into photo_feed array
+// we called this function inside Loadfeed function
+
 addToFlatList = (photo_feed, data, photo) => {
     var that = this;
     var photoObj = data[photo];
@@ -93,7 +103,6 @@ addToFlatList = (photo_feed, data, photo) => {
         const exists = (snapshot.val() !== null);
         if(exists) data = snapshot.val();
         photo_feed.push({
-         //   Photoavatar: that.state.avatar,
             id: photo,
             url: photoObj.url,
             caption: photoObj.caption,
@@ -109,6 +118,7 @@ addToFlatList = (photo_feed, data, photo) => {
     }).catch(error => console.log(error));
 }
 
+// This function will fetch our data from firebase so that we can pass this data to addToFlatList function
 
 LoadFeed = () => {
     this.setState({
@@ -128,7 +138,10 @@ LoadFeed = () => {
         }).catch(error => console.log(error));
 
     }
- 
+
+// this function will call LoadFeed Function
+// we called this function inside Flat list.
+
 LoadNew = () => {
 
     this.LoadFeed();

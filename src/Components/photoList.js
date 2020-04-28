@@ -4,6 +4,8 @@ import { database } from '../../config/config';
 
 class photoList extends React.Component {
 
+    // Set Initial state
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +15,9 @@ class photoList extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    // this componentDidMount will call Loadfeed function when component will pass porps to this component
+
+componentDidMount = () => {
         const { isUser, userId} = this.props;
         console.log(userId);
         if(isUser == true) {
@@ -25,19 +29,25 @@ class photoList extends React.Component {
         else {
             this.LoadFeed('');
         }
-    }
+}
 
-    pluralCheck = (s) => {
+    // this function will check plural check for or timeStamp function 
+
+pluralCheck = (s) => {
         if(s == 1) {
             return ' ago';
         }
         else {
             return 's ago';
         }
-    }
+}
     
+
+// this function will convert timeStamp into seconds months and Years
+// we called this function inside AddToFlatList function
     
-    timeConvertor = (timestamp) => {
+
+timeConvertor = (timestamp) => {
         var a = new Date(timestamp * 1000);
         var seconds = Math.floor((new Date() - a) / 1000);
         var interval = Math.floor(seconds / 31536000);
@@ -62,8 +72,11 @@ class photoList extends React.Component {
         } 
         return Math.floor(seconds) + ' second'+this.pluralCheck(seconds);
     }
-    
-    addToFlatList = (photo_feed, data, photo) => {
+
+// this function will push our data(Firebase data) into photo_feed array
+// we called this function inside Loadfeed function    
+
+addToFlatList = (photo_feed, data, photo) => {
         var that = this;
         var photoObj = data[photo];
         database.ref('users').child(photoObj.author).child('username').once('value').then(function(snapshot) {
@@ -84,10 +97,12 @@ class photoList extends React.Component {
             });
     
         }).catch(error => console.log(error));
-    }
+}
     
-    
-    LoadFeed = (userId = '') => {
+ // This function will fetch our data from firebase so that we can pass this data to addToFlatList function
+
+
+LoadFeed = (userId = '') => {
         this.setState({
             refresh: true,
             photo_feed: []
@@ -110,15 +125,16 @@ class photoList extends React.Component {
                     }
             }).catch(error => console.log(error));
     
-        }
-     
-    LoadNew = () => {
+}
+
+// this function will call LoadFeed Function
+// we called this function inside Flat list .
+
+LoadNew = () => {
     
-        this.LoadFeed();
+    this.LoadFeed();
         
-    }
-
-
+}
 
     render() {
 
@@ -126,49 +142,47 @@ class photoList extends React.Component {
         return (
                 <View style={{ flex: 1 }} >
                  {this.state.loading ==  true ? (
-                     <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
+                    <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
                  ) : ( 
     
-                <FlatList 
-                    refreshing={this.state.refresh}
-                    onRefresh={this.LoadNew}
-                    data={this.state.photo_feed}
-                    keyExtractor={(item, index) => index.toString()}
-                    style={{flex: 1, backgroundColor: '#eee'}}
-                    renderItem={({item, index}) => (
+                    <FlatList 
+                        refreshing={this.state.refresh}
+                        onRefresh={this.LoadNew}
+                        data={this.state.photo_feed}
+                        keyExtractor={(item, index) => index.toString()}
+                        style={{flex: 1, backgroundColor: '#eee'}}
+                        renderItem={({item, index}) => (
     
-                    <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1, borderColor: 'grey'}}>
-                        <View style={{ flexDirection: 'row', padding: 5, width: '100%', justifyContent: 'space-between'}}>
-                            <Text>{item.posted}</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
-                            <Text>{item.author}</Text>
-                            </TouchableOpacity>
-                        </View>
+                                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1, borderColor: 'grey'}}>
+                                    <View style={{ flexDirection: 'row', padding: 5, width: '100%', justifyContent: 'space-between'}}>
+                                        <Text>{item.posted}</Text>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
+                                        <Text>{item.author}</Text>
+                                    </TouchableOpacity>
+                                </View>
                     
-                        <View>
-                            <Image 
-                            source={{ uri: item.url }} 
-                            style={{ resizeMode: 'cover', width: '100%', height: 275 }}
-                            />
-                        </View>
+                                <View>
+                                <Image 
+                                    source={{ uri: item.url }} 
+                                    style={{ resizeMode: 'cover', width: '100%', height: 275 }}
+                                />
+                                </View>
     
-                        <View style={{ padding: 5}}>
-                            <Text>{item.caption}</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
-                            <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
-                            </TouchableOpacity>
-                        </View>
+                                <View style={{ padding: 5}}>
+                                    <Text>{item.caption}</Text>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
+                                        <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
+                                    </TouchableOpacity>
+                                </View>
     
-                    </View>
+                            </View>
                     )}
                 />
     
-                )}
-                       
-                    
+                )}                       
                 </View>
-            );
-        }
+        );
+    }
 }
 
 export default photoList;
