@@ -147,7 +147,7 @@ class profile extends React.Component {
 
                 // if user is not logged In
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <AuthSection />
+                    <Text>Please Log In to see timeline</Text>
                 </View>
             )}
             </View>

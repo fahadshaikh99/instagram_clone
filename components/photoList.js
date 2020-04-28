@@ -112,11 +112,11 @@ class photoList extends React.Component {
     
         }
      
-    // LoadNew = () => {
+    LoadNew = () => {
     
-    //     this.LoadFeed();
+        this.LoadFeed();
         
-    // }
+    }
 
 
 
@@ -131,7 +131,7 @@ class photoList extends React.Component {
     
                 <FlatList 
                     refreshing={this.state.refresh}
-                  //  onRefresh={this.LoadNew}
+                    onRefresh={this.LoadNew}
                     data={this.state.photo_feed}
                     keyExtractor={(item, index) => index.toString()}
                     style={{flex: 1, backgroundColor: '#eee'}}
