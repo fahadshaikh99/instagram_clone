@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text,  TouchableOpacity, FlatList, Image, ActivityIndicator} from 'react-native';
 import { database } from '../../config/config';
+import FetchImage from '../Components/FetchImage';
+import IconComment from './IconComment';
+import IconLike from './IconLike';
 
 class photoList extends React.Component {
 
@@ -132,7 +135,19 @@ LoadFeed = (userId = '') => {
 
 LoadNew = () => {
     
-    this.LoadFeed();
+    // this.LoadFeed();
+
+    const { isUser, userId} = this.props;
+    console.log(userId);
+    if(isUser == true) {
+        //Profile
+        //userId
+        this.LoadFeed(userId);
+
+    }
+    else {
+        this.LoadFeed('');
+    }
         
 }
 
@@ -153,11 +168,23 @@ LoadNew = () => {
                         style={{flex: 1, backgroundColor: '#eee'}}
                         renderItem={({item, index}) => (
     
-                                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1, borderColor: 'grey'}}>
+                                <View key={index} style={{backgroundColor: 'white', width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1}}>
                                     <View style={{ flexDirection: 'row', padding: 5, width: '100%', justifyContent: 'space-between'}}>
-                                        <Text>{item.posted}</Text>
+                                       
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
-                                        <Text>{item.author}</Text>
+                                    <View style={{ flexDirection: 'row'}}>
+                                        <View>
+                                        <FetchImage 
+                                            objectUrl={item.authorId}
+                                        />
+                                        </View>
+                                        <View style={{ marginTop: '5%', paddingLeft: '4%'}}>
+                                            <Text style={{ fontWeight: 'bold', fontSize: 15, fontStyle: 'italic'}}>
+                                                {item.author}
+                                            </Text> 
+                                            <Text>{item.posted}</Text> 
+                                        </View>
+                                     </View>
                                     </TouchableOpacity>
                                 </View>
                     
@@ -170,9 +197,18 @@ LoadNew = () => {
     
                                 <View style={{ padding: 5}}>
                                     <Text>{item.caption}</Text>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
-                                        <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
-                                    </TouchableOpacity>
+                                    <View style={{ justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row'}}> 
+                                        <TouchableOpacity>
+                                
+                                            <IconLike />
+                        
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
+                            
+                                        <IconComment />
+                           
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
     
                             </View>

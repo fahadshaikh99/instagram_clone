@@ -10,6 +10,7 @@ import userProfile from './src/Screens/userProfile';
 import upload from './src/Screens/upload';
 import SearchScreen from './src/Screens/SearchScreen';
 import MessagesScreen from './src/Screens/MessagesScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const TabStack = createBottomTabNavigator(
@@ -19,7 +20,8 @@ const TabStack = createBottomTabNavigator(
     Profile: { screen: profile},
     Messages: {screen: MessagesScreen},
     Search: {screen: SearchScreen}
-  }
+  },
+
 )
 
 const MainStack = createStackNavigator(

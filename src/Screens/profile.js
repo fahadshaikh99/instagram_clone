@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
-import { f, auth, storage, database } from '../../config/config.js';
+import { View, Text,  Image,  TouchableOpacity, TextInput, ActivityIndicator, ScrollView} from 'react-native';
+import { f, database } from '../../config/config.js';
 import PhotoList from '../Components/photoList';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class profile extends React.Component {
@@ -76,8 +76,8 @@ class profile extends React.Component {
                 {this.state.loggedin == true ? (
                 // if logged In
                 <View style={{ flex: 1}}>
-                    <View style={{ height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
-                        <Text>Profile</Text>
+                    <View style={{ height: 65, paddingTop:10, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
+                        <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 28}}>Profile</Text>
                     </View>
 
 
@@ -86,9 +86,9 @@ class profile extends React.Component {
                         style={{marginLeft: 10, height: 100, width: 100, borderRadius: 50}}
                         />
 
-                    <View>
-                        <Text>{this.state.name}</Text>
-                        <Text>{this.state.username}</Text>
+                    <View style={{ paddingRight: '10%'}}>
+                        <Text style={{ fontSize: 20, fontStyle: 'italic'}}>{this.state.name}</Text>
+                        <Text style={{ fontSize: 20, fontStyle: 'italic'}}>{this.state.username}</Text>
                         
                     </View>
 
@@ -125,18 +125,18 @@ class profile extends React.Component {
                     <View style={{ paddingBottom: 20, borderBottomWidth: 1}}>
                         <TouchableOpacity 
                             onPress={ () => this.logoutUser()}
-                            style={{ marginTop: 10, marginHorizontal: 40, paddingVertical: 15, borderRadius: 20, borderColor: 'grey', borderWidth: 1.5}}>
-                            <Text style={{ textAlign: 'center', color: 'grey'}}>Logout</Text>
+                            style={{ marginTop: 10, backgroundColor: '#FF806A', borderColor: '#FF806A', marginHorizontal: 40, paddingVertical: 15, borderRadius: 20,  borderWidth: 1.5}}>
+                            <Text style={{ textAlign: 'center', color: 'black'}}>Logout</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             onPress={() => this.editable()}
-                            style={{ marginTop: 10, marginHorizontal: 40, paddingVertical: 15, borderRadius: 20, borderColor: 'grey', borderWidth: 1.5}}>
-                        <Text style={{ textAlign: 'center', color: 'grey'}}>Edit Profile</Text>
+                            style={{ marginTop: 10, marginHorizontal: 40,backgroundColor: '#1789D2', borderColor: '#1789D2', paddingVertical: 15, borderRadius: 20, borderWidth: 1.5}}>
+                        <Text style={{ textAlign: 'center', color: 'black'}}>Edit Profile</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             onPress={() => this.props.navigation.navigate('Upload')}
-                            style={{backgroundColor: 'grey', marginTop: 10, marginHorizontal: 40, paddingVertical: 35, borderRadius: 20, borderColor: 'grey', borderWidth: 1.5}}>
-                            <Text style={{ textAlign: 'center', color: 'white'}}>Upload New</Text>
+                            style={{backgroundColor: '#70E86D', marginTop: 8, marginHorizontal: 30, borderColor: '#70E86D', paddingVertical: 35, borderRadius: 20,  borderWidth: 1.5}}>
+                            <Text style={{ textAlign: 'center', color: 'black'}}>Upload New</Text>
                         </TouchableOpacity>
                     </View>
                     )}
@@ -147,11 +147,16 @@ class profile extends React.Component {
 
                 // if user is not logged In
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text>Please Log In to see timeline</Text>
+                    <ActivityIndicator size="large" color="red" />
                 </View>
             )}
             </View>
         );
     }
+}
+
+profile.navigationOptions = {
+    tabBarIcon: <Icon name="user-circle" size={25}/>
+
 }
 export default profile;

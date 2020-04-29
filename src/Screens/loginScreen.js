@@ -1,5 +1,5 @@
 import React from  'react';
-import { View, Text, Image, ActivityIndicator, StyleSheet, ImageBackground} from 'react-native';
+import { View, StyleSheet, ImageBackground} from 'react-native';
 import SignInFields from '../Components/SignInFields';
 
 class loginScreen extends React.Component {

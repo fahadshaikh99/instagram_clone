@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
-import { f, auth, storage, database } from '../../config/config.js';
+import { View, Text, Image, TouchableOpacity, ActivityIndicator} from 'react-native';
+import { database } from '../../config/config.js';
 import PhotoList from '../Components/photoList';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
@@ -69,16 +70,18 @@ componentDidMount = () => {
               { this.state.loaded == false ?  (
                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
               ) : (
-                <View style={{ flex: 1}}>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between', height: 70, paddingTop:30, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, alignItems: 'center'}} >
+                <View style={{ flex: 1, backgroundColor: 'white', borderWidth: 0.5 }}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', height: 70, paddingTop:'2%', backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, alignItems: 'center'}} >
                         <TouchableOpacity 
                             style={{ width: 100}}
                             onPress={() => this.props.navigation.goBack()}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 14, paddingLeft: 5}}>
-                                go back
+                            <Text style={{ fontWeight: 'bold', fontSize: 25, paddingLeft: 5}}>
+                                Back
                             </Text>
                         </TouchableOpacity>
-                        <Text>Profile</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 25, paddingLeft: 5}}>
+                            Profile
+                        </Text>
                         <Text style={{ width: 100}}></Text>
                     </View>
 
@@ -88,9 +91,10 @@ componentDidMount = () => {
                         style={{marginLeft: 10, height: 100, width: 100, borderRadius: 50}}
                         />
 
-                    <View>
-                        <Text>{this.state.username}</Text>
-                        <Text>{this.state.name}</Text>
+                    <View style={{ paddingRight: '10%'}}>
+                        <Text style={{ fontSize: 20, fontStyle: 'italic'}}>{this.state.name}</Text>
+                        <Text style={{ fontSize: 20, fontStyle: 'italic'}}>{this.state.username}</Text>
+                        
                     </View>
 
                     </View>
@@ -100,5 +104,10 @@ componentDidMount = () => {
             </View>
         );
     }
+}
+
+userProfile.navigationOptions = {
+    tabBarIcon: <Icon name="user" size={20}/>
+
 }
 export default userProfile;

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, Alert, TextInput, ActivityIndicator } from 'react-native';
-import { f, auth, storage, database } from '../../config/config.js';
+import { View, Text, Image, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
+import { f, storage, database } from '../../config/config.js';
 import ImagePicker from 'react-native-image-picker';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 // This const variable is used for Image Gallery Options
@@ -266,6 +267,11 @@ componentDidMount = () => {
             </View>
         );
     }
+}
+
+upload.navigationOptions = {
+    tabBarIcon: <Icon name="ios-add-circle" size={25}/>
+
 }
 export default upload;
 

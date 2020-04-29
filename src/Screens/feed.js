@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
-import { f, auth, storage, database } from '../../config/config.js';
+import { f, database } from '../../config/config.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import FetchImage from '../Components/FetchImage';
 import { withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Entypo';
+import IconComment from '../Components/IconComment';
+import IconLike from '../Components/IconLike.js';
 
 
 class feed extends React.Component {
@@ -58,7 +61,7 @@ pluralCheck = (s) => {
         return ' ago';
     }
     else {
-        return 's ago';
+        return ' ago';
     }
 }
 
@@ -154,11 +157,19 @@ render() {
 
 
     return (
-            <View style={{ flex: 1 }} >
-                <View style={{ height: '10%', paddingTop:'5%', backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
-                    <Text style={{ fontSize: 30}}>
-                        Feed
-                    </Text>
+            <View style={{ flex: 1, backgroundColor: 'white' }} >
+                <View style={{flexDirection: 'row', height: '10%', paddingTop:'1%', backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 1, alignItems: 'center'}} >
+                    <View style={{ paddingLeft: 7}}>
+                        <Image 
+                            source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png'}}
+                            style={{ height: 40, width: 40, borderRadius: 20}}
+                        />
+                    </View>
+                    <View style={{ paddingLeft: 20}}>
+                        <Text style={{ fontSize: 30, fontStyle: 'italic'}}>
+                            Instagram
+                        </Text>
+                    </View>
                     </View>
              {this.state.loading ==  true ? (
                  <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><ActivityIndicator size="large" color="red" /></View>
@@ -169,10 +180,10 @@ render() {
                 onRefresh={this.LoadNew}
                 data={this.state.photo_feed}
                 keyExtractor={(item, index) => index.toString()}
-                style={{flex: 1, backgroundColor: '#eee'}}
+                style={{flex: 1, backgroundColor: 'white'}}
                 renderItem={({item, index}) => (
 
-                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, borderBottomWidth: 1, borderColor: 'grey'}}>
+                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, borderBottomWidth: 0.5, borderBottomColor: 'grey', borderColor: 'grey'}}>
                     <View style={{ flexDirection: 'row', padding: 5, width: '100%'}}>
                         
                         
@@ -184,7 +195,7 @@ render() {
                                 />
                                 </View>
                                 <View style={{ marginTop: '5%', paddingLeft: '4%'}}>
-                                    <Text>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 15, fontStyle: 'italic'}}>
                                         {item.author}
                                     </Text> 
                                     <Text>{item.posted}</Text> 
@@ -201,11 +212,20 @@ render() {
                         />
                     </View>
 
-                    <View style={{ padding: 5}}>
-                        <Text>{item.caption}</Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
-                            <Text style={{ textAlign: 'center', marginTop: 10 }}> View Comments...</Text>
-                        </TouchableOpacity>
+                    <View style={{ padding: 5,}}>
+                        <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 15}}>{item.caption}</Text>
+                        <View style={{ justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row'}}> 
+                            <TouchableOpacity>
+                                    
+                                    <IconLike />
+                            
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { photoId: item.id})}>
+                                
+                                    <IconComment />
+                            
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
                 </View>
@@ -218,5 +238,13 @@ render() {
             </View>
         );
     }
+
+}
+
+
+
+feed.navigationOptions = {
+    tabBarIcon: <Icon name="instagram" size={25}/>
+
 }
 export default withNavigation(feed);

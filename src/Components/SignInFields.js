@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
-import { database, auth } from '../../config/config';
+import {  auth } from '../../config/config';
 import { withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 class SignInFields extends React.Component {
@@ -53,9 +54,9 @@ login = async () => {
                 <View style={{ alignItems: 'center'}}>
           
                     <View style={styles.backgroundStyle}>
-                    {/* <Icon style={styles.iconStyle}
-                    name="phone"
-                    /> */}
+                    <Icon style={styles.iconStyle}
+                    name="email"
+                    />
                         <TextInput 
                             style={styles.InputTextStyle}
                             placeholder="Email"
@@ -72,9 +73,9 @@ login = async () => {
                 </View>
 
                 <View style={styles.backgroundStyle}>
-                    {/* <Icon style={styles.iconStyle}
+                    <Icon style={styles.iconStyle}
                     name="lock"
-                    /> */}
+                    />
                     <TextInput 
                         style={styles.InputTextStyle}
                         placeholder="Password"
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
         
     },
     iconStyle: {
-        fontSize: 20,
+        fontSize: 25,
         alignSelf: 'center',
         marginHorizontal: 13
     },

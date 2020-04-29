@@ -1,5 +1,5 @@
 import React from  'react';
-import { View, Text, Image, ActivityIndicator} from 'react-native';
+import { View, Image, ActivityIndicator} from 'react-native';
 import { database } from '../../config/config';
 
 

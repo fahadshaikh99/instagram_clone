@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
-import { f, auth, storage, database } from '../../config/config.js';
+import { View, Text, FlatList, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
+import { f, database } from '../../config/config.js';
 
 
 class comments extends React.Component {

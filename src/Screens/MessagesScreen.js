@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text} from 'react-native';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class MessagesScreen extends React.Component {
     render() {
@@ -10,6 +10,12 @@ class MessagesScreen extends React.Component {
             </View>
         );
     }
+}
+
+
+MessagesScreen.navigationOptions = {
+    tabBarIcon: <Icon name="message" size={25}/>
+
 }
 
 export default MessagesScreen;
