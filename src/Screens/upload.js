@@ -87,7 +87,8 @@ uploadPublish = () => {
         else {
             alert("Please Caption Needed");
         }
-    }else
+    }
+    else
         {
             console.log('ignore the button because photo is uploading');
         }
