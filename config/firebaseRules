@@ -1,0 +1,48 @@
+{
+  "rules": {
+   	"photos": {
+      ".read": true,
+        "$photoId": {
+          //can only write by auth
+          ".write": "root.child('photos').child($photoId).child('author').val() == auth.uid || newData.child('author').val() == auth.uid",
+        	"author": {
+          	".validate": "newData.val() == auth.uid" 
+          }
+        }
+      
+    },
+    "users": {
+      "$userId": {
+          ".read": "auth.uid == $userId",
+          ".write": "auth.uid == $userId",
+            "username": {
+              	".read": true
+            },
+               "name": {
+              	".read": true
+            },
+               "avatar": {
+              	".read": true
+            },
+               "photos": {
+              	".read": true
+            },
+               "email": {
+              	".read": "auth.uid == $userId"
+            }
+              
+        }
+      },
+      "comments": {
+        ".read": true,
+          "$photoId" : {
+            	"$commentId": {
+                ".write": "root.child('comments').child($photoId).child($commentId).child('author').val() == auth.uid || newData.child('author').val() == auth.uid",
+        	"author": {
+          	".validate": "newData.val() == auth.uid" 
+          }
+              }
+          }
+      }
+    }
+  }
