@@ -1,6 +1,6 @@
 # Instagram Clone React Native
 
-![](GithubInstaGIf.gif)
+![](LastTimeInsta.gif)
 
 
 ## React Native project
