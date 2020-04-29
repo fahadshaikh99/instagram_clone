@@ -3,6 +3,7 @@ import { View, Text,  Image,  TouchableOpacity, TextInput, ActivityIndicator, Sc
 import { f, database } from '../../config/config.js';
 import PhotoList from '../Components/photoList';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { withNavigation } from 'react-navigation';
 
 
 class profile extends React.Component {
@@ -48,8 +49,16 @@ class profile extends React.Component {
     }
 
     logoutUser = () => {
+        const { navigate } = this.props.navigation;
         f.auth().signOut();
-        alert('Logged Out');
+        f.auth().onAuthStateChanged(function(user) {
+            if(!user) {
+               console.log("You are not loged In");
+                navigate('login');
+               
+            }
+        
+        });
     }
     editable = () => {
         this.setState({ editingProfile: true})
@@ -172,4 +181,4 @@ profile.navigationOptions = {
     tabBarIcon: <Icon name="user-circle" size={25}/>
 
 }
-export default profile;
+export default withNavigation(profile);
