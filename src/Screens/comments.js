@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native';
 import { f, database } from '../../config/config.js';
-
+import FetchImage from '../Components/FetchImage';
 
 class comments extends React.Component {
     
@@ -196,11 +196,15 @@ reloadCommentList = () => {
                         <TouchableOpacity 
                         style={{ width: 100}}
                         onPress={() => this.props.navigation.goBack()}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 14, paddingLeft: 5}}>
-                                go back
+                            <Text style={{ fontSize: 17, fontStyle: 'italic'}}>
+                                Go back
                             </Text>
                         </TouchableOpacity>
-                        <Text>Comments</Text>
+                        <View style={{ paddingLeft: 20}}>
+                            <Text style={{ fontSize: 30, fontStyle: 'italic'}}>
+                                Comments
+                            </Text>
+                        </View>
                         <Text style={{ width: 100}}></Text>
                     </View>
 
@@ -208,27 +212,39 @@ reloadCommentList = () => {
                  <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center'}}><Text> This Post don't have any comments</Text></View>
             ) : (
                 <FlatList
-                data={this.state.comments_list}
-                refreshing={this.state.refresh}
-                keyExtractor={(item, index) => index.toString()}
-                style={{ flex: 1, backgroundColor: '#eee'}}
-                renderItem={({item, index}) => (
-                    <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'grey'}}>
-                        
-                        
-                        
-                        <View style={{ padding: 5, width: '100%', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <Text>
-                                {item.posted}
-                            </Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('User', {userId: item.authorId})}>
-                                <Text>{item.author}</Text>
+                    data={this.state.comments_list}
+                    refreshing={this.state.refresh}
+                    keyExtractor={(item, index) => index.toString()}
+                    style={{ flex: 1, backgroundColor: '#eee'}}
+                    renderItem={({item, index}) => (
+                        <View key={index} style={{backgroundColor:'white', width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-between',  borderColor: 'grey'}}>
+                            
+                            
+                            
+                        <View style={{ flexDirection: 'row', padding: 5, width: '100%'}}>
+                            
+                            
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>
+                                <View style={{ flexDirection: 'row'}}>
+                                    <View>
+                                    <FetchImage 
+                                        objectUrl={item.authorId}
+                                    />
+                                    </View>
+                                    <View style={{ marginTop: '10%', paddingLeft: '4%'}}>
+                                        <Text style={{ fontWeight: 'bold', fontSize: 15, fontStyle: 'italic'}}>
+                                            {item.author}:
+                                        </Text> 
+                                        <Text style={{ fontSize: 10}}>{item.posted}</Text> 
+                                    </View>
+                                </View>
                             </TouchableOpacity>
+                            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                                <Text>{item.comment}</Text>
+                            </View>
                         </View>
-                        <View style={{ padding: 5}}>
-                            <Text>{item.comment}</Text>
+                            
                         </View>
-                    </View>
                 )}
                 />
             )}      
@@ -246,7 +262,7 @@ reloadCommentList = () => {
                       />
                     <TouchableOpacity 
                         onPress={() => this.postComment()}
-                        style={{ paddingVertical: 10, paddingHorizontal: 20, backgroundColor: 'blue', borderRadius: 5}}
+                        style={{ paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#4d94ff', borderRadius: 5}}
                     >
                         <Text style={{ color: 'white'}}>Post</Text>
                     </TouchableOpacity>

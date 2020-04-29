@@ -43,11 +43,11 @@ login = async () => {
     render(){
 
         return(
-            <View style={{ marginTop: '40%'}}>
+            <View style={{ marginTop: '30%'}}>
 
-                <View style={{ alignItems: 'center'}}>
+                <View style={{ alignItems: 'center', marginBottom: '10%'}}>
                     <Text style={styles.text}>
-                        Enter your phone number?
+                        LOGIN
                     </Text>
                 </View>
 

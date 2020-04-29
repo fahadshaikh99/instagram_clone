@@ -157,9 +157,9 @@ render() {
 
 
     return (
-            <View style={{ flex: 1, backgroundColor: 'white' }} >
-                <View style={{flexDirection: 'row', height: '10%', paddingTop:'1%', backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 1, alignItems: 'center'}} >
-                    <View style={{ paddingLeft: 7}}>
+            <View style={{ flex: 1}} >
+                <View style={{flexDirection: 'row', height: '10%', paddingTop:'1%', backgroundColor: 'white', borderColor: '#e1eaea', borderBottomWidth: 7, alignItems: 'center'}} >
+                    <View style={{ paddingLeft: 7, opacity: 0.7}}>
                         <Image 
                             source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png'}}
                             style={{ height: 40, width: 40, borderRadius: 20}}
@@ -183,7 +183,7 @@ render() {
                 style={{flex: 1, backgroundColor: 'white'}}
                 renderItem={({item, index}) => (
 
-                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, borderBottomWidth: 0.5, borderBottomColor: 'grey', borderColor: 'grey'}}>
+                <View key={index} style={{ width: '100%', overflow: 'hidden', marginBottom: 5, borderBottomColor: '#e1eaea',borderBottomWidth: 7, marginBottom: '2%', borderColor: 'grey'}}>
                     <View style={{ flexDirection: 'row', padding: 5, width: '100%'}}>
                         
                         
@@ -213,7 +213,9 @@ render() {
                     </View>
 
                     <View style={{ padding: 5,}}>
-                        <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 15}}>{item.caption}</Text>
+                        <View style={{ padding: '3%'}}>
+                            <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 15}}>{item.caption}</Text>
+                        </View>
                         <View style={{ justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row'}}> 
                             <TouchableOpacity>
                                     

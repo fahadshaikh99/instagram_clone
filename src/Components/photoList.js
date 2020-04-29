@@ -130,15 +130,15 @@ LoadFeed = (userId = '') => {
     
 }
 
-// this function will call LoadFeed Function
+// this function will reload the whole
 // we called this function inside Flat list .
 
 LoadNew = () => {
     
-    // this.LoadFeed();
+    
 
     const { isUser, userId} = this.props;
-    console.log(userId);
+ 
     if(isUser == true) {
         //Profile
         //userId
@@ -168,7 +168,7 @@ LoadNew = () => {
                         style={{flex: 1, backgroundColor: '#eee'}}
                         renderItem={({item, index}) => (
     
-                                <View key={index} style={{backgroundColor: 'white', width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around', borderBottomWidth: 1}}>
+                                <View key={index} style={{backgroundColor: 'white', width: '100%', overflow: 'hidden', marginBottom: 5, justifyContent: 'space-around'}}>
                                     <View style={{ flexDirection: 'row', padding: 5, width: '100%', justifyContent: 'space-between'}}>
                                        
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('User', { userId: item.authorId})}>

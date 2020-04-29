@@ -76,12 +76,12 @@ class profile extends React.Component {
                 {this.state.loggedin == true ? (
                 // if logged In
                 <View style={{ flex: 1}}>
-                    <View style={{ height: 65, paddingTop:10, backgroundColor: 'white', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center'}} >
-                        <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 28}}>Profile</Text>
+                    <View style={{ height: 65, paddingTop:10, backgroundColor: 'white', borderColor: 'lightgrey',  justifyContent: 'center', alignItems: 'center', borderBottomWidth: 0.5}} >
+                        <Text style={{marginBottom:'2%', fontStyle: 'italic', backgroundColor: 'white', fontWeight: 'bold', fontSize: 28}}>Profile</Text>
                     </View>
 
 
-                    <View style={{ justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', paddingVertical: 10}}>
+                    <View style={{ marginBottom:'2%', backgroundColor: 'white', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', paddingVertical: 10}}>
                         <Image source={{ uri: this.state.avatar }}
                         style={{marginLeft: 10, height: 100, width: 100, borderRadius: 50}}
                         />
@@ -94,7 +94,7 @@ class profile extends React.Component {
 
                     </View>
                     {this.state.editingProfile == true ? (
-                        <View style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 20, borderBottomWidth: 1}}>
+                        <View style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 20}}>
                             <TouchableOpacity onPress={() => this.setState({ editingProfile: false})}>
                                 <Text style={{ fontWeight: 'bold'}}>Cancel Editing</Text>
                             </TouchableOpacity>
@@ -122,21 +122,34 @@ class profile extends React.Component {
                     ): (
 
             
-                    <View style={{ paddingBottom: 20, borderBottomWidth: 1}}>
-                        <TouchableOpacity 
-                            onPress={ () => this.logoutUser()}
-                            style={{ marginTop: 10, backgroundColor: '#FF806A', borderColor: '#FF806A', marginHorizontal: 40, paddingVertical: 15, borderRadius: 20,  borderWidth: 1.5}}>
-                            <Text style={{ textAlign: 'center', color: 'black'}}>Logout</Text>
-                        </TouchableOpacity>
+                    <View style={{marginBottom:'2%',backgroundColor:'white', paddingBottom: 20, flexDirection: 'row', alignItems:'center', justifyContent:'space-evenly', paddingTop: '2%'}}>
+                      
                         <TouchableOpacity 
                             onPress={() => this.editable()}
-                            style={{ marginTop: 10, marginHorizontal: 40,backgroundColor: '#1789D2', borderColor: '#1789D2', paddingVertical: 15, borderRadius: 20, borderWidth: 1.5}}>
+                            
+                            >
+                        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                        <Icon name="edit" size={25}/>
                         <Text style={{ textAlign: 'center', color: 'black'}}>Edit Profile</Text>
+                        </View>
                         </TouchableOpacity>
+                        
                         <TouchableOpacity 
                             onPress={() => this.props.navigation.navigate('Upload')}
-                            style={{backgroundColor: '#70E86D', marginTop: 8, marginHorizontal: 30, borderColor: '#70E86D', paddingVertical: 35, borderRadius: 20,  borderWidth: 1.5}}>
+                            
+                            >
+                            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                            <Icon name="upload" size={25}/>
                             <Text style={{ textAlign: 'center', color: 'black'}}>Upload New</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            onPress={ () => this.logoutUser()}
+                            >
+                            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                            <Icon name="sign-out" size={25} />
+                            <Text style={{ textAlign: 'center', color: 'black'}}>Logout</Text>
+                            </View>
                         </TouchableOpacity>
                     </View>
                     )}

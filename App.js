@@ -15,11 +15,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TabStack = createBottomTabNavigator(
   {
-    feed: { screen: feed},
+    Feed: { screen: feed},
     Upload: { screen: upload},
-    Profile: { screen: profile},
     Messages: {screen: MessagesScreen},
-    Search: {screen: SearchScreen}
+    Search: {screen: SearchScreen},
+    Profile: { screen: profile}
   },
 
 )
@@ -27,10 +27,10 @@ const TabStack = createBottomTabNavigator(
 const MainStack = createStackNavigator(
   {
       Home: { screen: TabStack},
-      User: { screen: userProfile},
       Comments: { screen: comments},
       login: { screen: loginScreen},
-      SignUp: { screen: SignUpScreen}
+      SignUp: { screen: SignUpScreen},
+      User: { screen: userProfile},
   },
   {
   initialRouteName: 'Home',
