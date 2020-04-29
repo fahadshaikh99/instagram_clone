@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCFQwNHXOp6RsxAlW9bc-ths85I96VvXWo",
-    authDomain: "photo-feed-9bf2d.firebaseapp.com",
-    databaseURL: "https://photo-feed-9bf2d.firebaseio.com",
-    projectId: "photo-feed-9bf2d",
-    storageBucket: "photo-feed-9bf2d.appspot.com",
-    messagingSenderId: "1020770004070",
-    appId: "1:1020770004070:web:12334ff5ab3355c6dc91a7",
-    measurementId: "G-WQZM05193X"
+  apiKey: "AIzaSyB1MX06OB1O9v8Nt1r4h_uu79ryNYvlcsc",
+  authDomain: "speed-up-games.firebaseapp.com",
+  databaseURL: "https://speed-up-games.firebaseio.com",
+  projectId: "speed-up-games",
+  storageBucket: "speed-up-games.appspot.com",
+  messagingSenderId: "162236211910",
+  appId: "1:162236211910:web:fea69816b7fa9f38562dc7",
+  measurementId: "G-HXN5092P7H"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

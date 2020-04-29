@@ -33,7 +33,7 @@ const MainStack = createStackNavigator(
       User: { screen: userProfile},
   },
   {
-  initialRouteName: 'Home',
+  initialRouteName: 'login',
   mode: 'modal',
   headerMode: 'none',
   }
