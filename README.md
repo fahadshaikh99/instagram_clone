@@ -1,4 +1,4 @@
-# Instagram Clone React Native
+# Social Networking App like instagram
 
 ![](LastTimeInsta.gif)
 
