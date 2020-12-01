@@ -13,10 +13,3 @@ This step is only show you How you can setup Firebase on your Project. You can s
 - Enable Login with username and password inside Authantication Section
 
 
-### Installing dependencies
-
-- yarn install
-
-## Run
-
-- react-native run-android
